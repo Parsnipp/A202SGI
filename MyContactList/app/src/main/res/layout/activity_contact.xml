@@ -11,7 +11,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:ems="10"
         android:id="@+id/editText"
         android:layout_alignParentTop="true"
@@ -22,7 +22,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:ems="10"
         android:id="@+id/editText2"
         android:layout_below="@+id/editText"
