@@ -1,6 +1,5 @@
 package com.example.its.mycontactlist;
 
-import android.util.Log;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,23 +9,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class ContactList extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_contact_list);
         final ListView lv = getListView();
-
         final SqliteController controller = new SqliteController(this);
-
         final ArrayList<HashMap<String, String>> contactList = controller.getAllContacts();
 
         if (contactList.size() != 0) {

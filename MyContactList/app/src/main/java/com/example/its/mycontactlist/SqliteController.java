@@ -19,9 +19,9 @@ public class SqliteController extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         String query;
-//        String drop;
-//        drop = "DROP TABLE contact";
-//        database.execSQL(drop);
+        String drop;
+        drop = "DROP TABLE contact";
+        database.execSQL(drop);
         query = "CREATE TABLE contact (Number TEXT PRIMARY KEY, First_Name TEXT, Surname TEXT, Address TEXT, City TEXT, Post_Code TEXT, Email TEXT, full_name TEXT)";
         database.execSQL(query);
     }
