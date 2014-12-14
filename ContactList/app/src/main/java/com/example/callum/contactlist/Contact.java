@@ -1,4 +1,4 @@
-package com.example.its.mycontactlist;
+package com.example.callum.contactlist;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -39,8 +39,11 @@ public class Contact extends Activity {
         city = (EditText)findViewById(R.id.editText5);
         post_code = (EditText)findViewById(R.id.editText6);
         email = (EditText)findViewById(R.id.editText7);
+        String empty = "empty";
 
-        if (getIntent().getExtras().getSerializable("Contact") != null) {
+        if (getIntent().getExtras().getSerializable("Contact") != empty) {
+            Log.d("LOG", "Cake");
+            Log.d("LOG", String.valueOf(getIntent().getExtras().getSerializable("Contact")));
             person = (HashMap<String, String>) getIntent().getExtras().getSerializable("Contact");
 
             if (person.get("First_Name") != null) first_name.setText(person.get("First_Name"));
@@ -58,22 +61,22 @@ public class Contact extends Activity {
             @Override
             public void onClick(View view) {
 
-            HashMap<String, String> hm = new HashMap<String, String>();
+                HashMap<String, String> hm = new HashMap<String, String>();
 
-            hm.put("First_Name", first_name.getText().toString());
-            hm.put("Surname", surname.getText().toString());
-            hm.put("Number", number.getText().toString());
-            hm.put("Address", address.getText().toString());
-            hm.put("City", city.getText().toString());
-            hm.put("Post_Code", post_code.getText().toString());
-            hm.put("Email", email.getText().toString());
+                hm.put("First_Name", first_name.getText().toString());
+                hm.put("Surname", surname.getText().toString());
+                hm.put("Number", number.getText().toString());
+                hm.put("Address", address.getText().toString());
+                hm.put("City", city.getText().toString());
+                hm.put("Post_Code", post_code.getText().toString());
+                hm.put("Email", email.getText().toString());
 
-            controller.insertContact(hm);
-            Intent intent = new Intent(getApplicationContext(), ContactList.class);
-            startActivity(intent);
+                controller.insertContact(hm);
+                Intent intent = new Intent(getApplicationContext(), ContactList.class);
+                startActivity(intent);
             }
         });
-        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

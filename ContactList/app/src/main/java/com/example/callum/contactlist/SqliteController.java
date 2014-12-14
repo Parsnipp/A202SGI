@@ -1,15 +1,13 @@
-package com.example.its.mycontactlist;
+package com.example.callum.contactlist;
 
 import android.content.ContentValues;
 import android.content.Context;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class SqliteController extends SQLiteOpenHelper {
     public SqliteController(Context applicationcontext){

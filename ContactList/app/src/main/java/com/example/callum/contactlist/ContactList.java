@@ -1,4 +1,4 @@
-package com.example.its.mycontactlist;
+package com.example.callum.contactlist;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -46,25 +46,24 @@ public class ContactList extends ListActivity {
 
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                HashMap map = (HashMap) adapterView.getItemAtPosition(i);
-                String number = (String) map.get("Number");
+                    HashMap map = (HashMap) adapterView.getItemAtPosition(i);
+                    String number = (String) map.get("Number");
 
-                controller.deleteContact(number);
-                contactList.clear();
-                ArrayList<HashMap<String, String>> contactList = controller.getAllContacts();
-                adapter.notifyDataSetChanged();
-                lv.invalidateViews();
-                lv.refreshDrawableState();
-                return true;
+                    controller.deleteContact(number);
+                    contactList.clear();
+                    ArrayList<HashMap<String, String>> contactList = controller.getAllContacts();
+                    adapter.notifyDataSetChanged();
+                    lv.invalidateViews();
+                    lv.refreshDrawableState();
+                    return true;
                 }
             });
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.contact_list, menu);
+        getMenuInflater().inflate(R.menu.menu_contact_list, menu);
         return true;
     }
 
@@ -76,9 +75,11 @@ public class ContactList extends ListActivity {
         }
         if (id == R.id.action_contact){
             Intent intent = new Intent(getApplicationContext(), Contact.class);
+            intent.putExtra("Contact", "empty");
             startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 }
+
