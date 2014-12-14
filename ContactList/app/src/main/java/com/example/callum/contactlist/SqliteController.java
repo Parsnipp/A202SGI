@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,8 +32,6 @@ public class SqliteController extends SQLiteOpenHelper {
     public void insertContact(HashMap<String, String> queryValues) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        String query = "DELETE FROM contact WHERE Number = " + queryValues.get("Number");
-        database.execSQL(query);
         values.put("First_Name", queryValues.get("First_Name"));
         values.put("Surname", queryValues.get("Surname"));
         values.put("Number", queryValues.get("Number"));
@@ -41,6 +40,23 @@ public class SqliteController extends SQLiteOpenHelper {
         values.put("Post_Code", queryValues.get("Post_Code"));
         values.put("Email", queryValues.get("Email"));
         database.insert("contact", null, values);
+        database.close();
+    }
+
+    public void updateContact(HashMap<String, String> queryValues) {
+        Log.d("LOG", "Update");
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("First_Name", queryValues.get("First_Name"));
+        values.put("Surname", queryValues.get("Surname"));
+        values.put("Number", queryValues.get("Number"));
+        values.put("Address", queryValues.get("Address"));
+        values.put("City", queryValues.get("City"));
+        values.put("Post_Code", queryValues.get("Post_Code"));
+        values.put("Email", queryValues.get("Email"));
+        String strFilter = "Number = " + "'" + queryValues.get("Number") + "'";
+        Log.d("LOG", strFilter);
+        database.update("contact", values, strFilter, null);
         database.close();
     }
 

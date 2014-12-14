@@ -25,6 +25,7 @@ public class Contact extends Activity {
     EditText post_code;
     EditText email;
     HashMap<String, String> person;
+    Boolean update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +40,11 @@ public class Contact extends Activity {
         city = (EditText)findViewById(R.id.editText5);
         post_code = (EditText)findViewById(R.id.editText6);
         email = (EditText)findViewById(R.id.editText7);
-        String empty = "empty";
+        update = false;
 
-        if (getIntent().getExtras().getSerializable("Contact") != empty) {
-            Log.d("LOG", "Cake");
-            Log.d("LOG", String.valueOf(getIntent().getExtras().getSerializable("Contact")));
+        if (String.valueOf(getIntent().getExtras().getSerializable("Contact")).length() != 0) {
             person = (HashMap<String, String>) getIntent().getExtras().getSerializable("Contact");
+            update = true;
 
             if (person.get("First_Name") != null) first_name.setText(person.get("First_Name"));
             if (person.get("Surname") != null) surname.setText(person.get("Surname"));
@@ -71,9 +71,15 @@ public class Contact extends Activity {
                 hm.put("Post_Code", post_code.getText().toString());
                 hm.put("Email", email.getText().toString());
 
-                controller.insertContact(hm);
-                Intent intent = new Intent(getApplicationContext(), ContactList.class);
-                startActivity(intent);
+                if (update == false) {
+                    controller.insertContact(hm);
+                    Intent intent = new Intent(getApplicationContext(), ContactList.class);
+                    startActivity(intent);
+                } else {
+                    controller.updateContact(hm);
+                    Intent intent = new Intent(getApplicationContext(), ContactList.class);
+                    startActivity(intent);
+                }
             }
         });
     }

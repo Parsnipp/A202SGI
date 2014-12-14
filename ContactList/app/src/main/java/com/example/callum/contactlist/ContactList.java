@@ -75,7 +75,7 @@ public class ContactList extends ListActivity {
         }
         if (id == R.id.action_contact){
             Intent intent = new Intent(getApplicationContext(), Contact.class);
-            intent.putExtra("Contact", "empty");
+            intent.putExtra("Contact", "");
             startActivity(intent);
             return true;
         }
