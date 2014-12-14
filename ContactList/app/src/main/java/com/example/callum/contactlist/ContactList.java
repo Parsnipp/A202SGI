@@ -21,12 +21,12 @@ public class ContactList extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list);
-        final ListView lv = getListView();
+        ListView lv = getListView();
         final SqliteController controller = new SqliteController(this);
         final ArrayList<HashMap<String, String>> contactList = controller.getAllContacts();
 
         if (contactList.size() != 0) {
-            final SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), contactList,
+            SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), contactList,
                     android.R.layout.simple_list_item_2, new String[]{"full_name", "Number"},
                     new int[]{android.R.id.text1, android.R.id.text2});
 
@@ -41,9 +41,7 @@ public class ContactList extends ListActivity {
                     startActivity(intent);
                 }
             });
-
             lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                     HashMap map = (HashMap) adapterView.getItemAtPosition(i);
@@ -51,10 +49,11 @@ public class ContactList extends ListActivity {
 
                     controller.deleteContact(number);
                     contactList.clear();
-                    ArrayList<HashMap<String, String>> contactList = controller.getAllContacts();
-                    adapter.notifyDataSetChanged();
-                    lv.invalidateViews();
-                    lv.refreshDrawableState();
+                    ArrayList<HashMap<String, String>> contactList2 = controller.getAllContacts();
+                    SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), contactList2,
+                            android.R.layout.simple_list_item_2, new String[]{"full_name", "Number"},
+                            new int[]{android.R.id.text1, android.R.id.text2});
+                    setListAdapter(adapter);
                     return true;
                 }
             });

@@ -70,10 +70,10 @@ public class ForecastFragment extends Fragment {
                 "Getting Weather Info...",
                 "Getting Weather Info..."
         };
-        List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
+        List<String> weekForecast = new ArrayList<>(Arrays.asList(data));
 
         forecastAdapter =
-                new ArrayAdapter<String>(
+                new ArrayAdapter<>(
                         getActivity(),
                         R.layout.list_item_forecast,
                         R.id.list_item_forecast_textview,

@@ -62,7 +62,7 @@ public class SqliteController extends SQLiteOpenHelper {
 
     public void deleteContact(String id) {
         SQLiteDatabase database = this.getWritableDatabase();
-        String deleteQuery = "DELETE FROM  contact WHERE Number = '"+ id +"'";
+        String deleteQuery = "DELETE FROM contact WHERE Number = '"+ id +"'";
         database.execSQL(deleteQuery);
     }
 
